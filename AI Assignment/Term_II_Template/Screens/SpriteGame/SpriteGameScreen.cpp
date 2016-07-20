@@ -31,11 +31,14 @@ SpriteCharacterGame Game;
 static string SpriteName = "Sprite Game";
 SpriteCharacterGame game(true);
 using namespace Helper;
-Matrix3 WorldView(1, 0, 0, 0, 1, 0, 1680 / 2, 1050 / 2, 1);
+Matrix3 WorldView(1, 0, 0, 0, 1, 0,0,0, 1);
 vector<Node*> SystemOne;
 
-ship NavShip(TM_PODSHIP, 250, 250, 25, 25, 25, 25, 0, 0, false);
+
 ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
+
+ship NavShip(TM_PODSHIP,1,1,25,25,25,25,0,0,false);
+
 
 char tempStr[256];
 
@@ -70,7 +73,7 @@ static void drawScreen()
 	NavShip.m_tex = TM_PODSHIP;
 	CameraShip.m_tex = TM_SHIP;
 
-	NavShip.SetTopSpeed(5.0f);
+	NavShip.SetTopSpeed(7);
 
 #pragma region //Scene
 	SDL_Rect s1 = { 0, 0,1680, 1050 };
@@ -78,10 +81,9 @@ static void drawScreen()
 	Window::Draw(TM_SPRITEPAPER, d1, &s1);
 #pragma endregion
 
-	
 	Game.UpdateStarSystem(WorldView, &SystemOne , CameraShip.ShipMat);
 	CameraShip.UpdateShip(WorldView);
-	NavShip.UpdateShip(CameraShip.ShipMat);
+	NavShip.UpdateShip(WorldView);
 
  #pragma region //Debug 
 	static bool Debugging = false;
@@ -89,8 +91,8 @@ static void drawScreen()
 	if(Debugging == true)
 	{
 		if (HELP_Keypresses(SDL_SCANCODE_INSERT)) { Debugging = false; }
-		//sprintf_s(tempStr, "Ship Angle = %d", Player.ReturnAngle());
-		//Window::printString(10 + 4, 20, tempStr, cBlue, 15); 
+		sprintf_s(tempStr, "Ship Angle = %d", CameraShip.ReturnAngle());
+		Window::printString(10 + 4, 20, tempStr, cBlue, 15); 
 
 		sprintf_s(tempStr, "Q = %d", HELP_Keypresses(SDL_SCANCODE_Q));
 		Window::printString(10 + 4, 80, tempStr, cBlue, 15);
@@ -163,7 +165,7 @@ void OpenSpriteGame()
 		return;
 	}
 
-	Game.SpawnSystem(&SystemOne, 0, 0, 50, 1, 2, 4, 5,6);
+	Game.SpawnSystem(&SystemOne, 0, 0, 0, 1, 3, 4, 1,2);
 
 	gSM.mBData = l_gameData;
 	gSM.p_drawScreen = drawScreen;

@@ -47,8 +47,7 @@ public:
 	void Steering();
 	void Saveship();
 	bool LoadShip();
-	void SetTopSpeed(float a_speed);
-
+	void SetTopSpeed(float a_speed); 
 	void SetTarget(vector<Node*>* a_node);
 
 	int ReturnAngle();
@@ -90,7 +89,7 @@ protected:
 class ChildShip : public ship
 {
 public:
-	ChildShip(SDL_Texture* a_tex, float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY,Matrix3* a_mat);
+	ChildShip( float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY);
 
 	void UpdateShip(Matrix3 p_world, Matrix3 p_parent);
 

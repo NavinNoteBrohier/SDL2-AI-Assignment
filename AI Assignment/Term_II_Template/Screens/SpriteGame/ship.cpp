@@ -295,10 +295,10 @@ ship::ship()
 	m_FrameY = 0;
 }
 
-ChildShip::ChildShip(SDL_Texture * a_tex, float a_x, float a_y, float a_width, float a_height, 
-	int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY, Matrix3* a_mat)
+ChildShip::ChildShip( float a_x, float a_y, float a_width, float a_height, 
+	int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY)
 {
-	m_tex = a_tex;
+
 
 	m_x = a_x;
 	m_y = a_y;
@@ -321,31 +321,28 @@ ChildShip::ChildShip(SDL_Texture * a_tex, float a_x, float a_y, float a_width, f
 
 void ChildShip::UpdateShip(Matrix3 p_world, Matrix3 p_parent)
 {
-	ShipMat.m_floats[1][1] = 1;
-	ShipMat.m_floats[2][0] = 0;
-	ShipMat.m_floats[2][1] = 0;
-
-	bool Yes = false;
-
 	if (m_KeyControl == true) { KeyPress(); }
 	else { Steering(); }
 
-	ShipMat.setRotateZ(m_angle);
+	//ShipMat.setRotateZ(m_angle);
 
-	m_x = MX;
-	m_y = MY;
+	//m_x = MX;
+	//m_y = MY;
 
-	Vector3 VecChild(m_x, m_y, 1);
+	Vector3 VecChild(m_x, m_y, 0);
 	VecChild = p_parent * ShipMat * VecChild;
 
 	ShipMat.m_floats[2][0] = VecChild.x;
 	ShipMat.m_floats[2][1] = VecChild.y;
 
+	m_x = VecChild.x;
+	m_y = VecChild.y;
+
 	Dest.w = (int)(m_width*p_world.m_floats[0][0]);
 	Dest.h = (int)(m_height*p_world.m_floats[1][1]);
 
-	m_x = ShipMat.m_floats[2][0];
-	m_y = ShipMat.m_floats[2][1];
+	ShipMat.m_floats[2][0] -= p_parent.m_floats[2][0];
+	ShipMat.m_floats[2][1] -= p_parent.m_floats[2][1];
 
 	DrawShip();
 }
