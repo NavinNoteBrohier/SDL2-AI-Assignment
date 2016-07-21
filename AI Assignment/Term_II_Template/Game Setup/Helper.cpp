@@ -53,4 +53,9 @@ namespace Helper
 		return (rand() % (pMax + 1 - pMin)) + pMin;
 	}
 
+	//float HELP_Randomf(float pMin, float pMax)
+	//{
+	//	return (rand() % (pMax + 1 - pMin)) + pMin;
+	//}
+
 };

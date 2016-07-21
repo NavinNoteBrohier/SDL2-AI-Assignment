@@ -11,7 +11,6 @@
 #include "Screens\SpriteGame\ship.h"
 #include <vector>
 
-
 class Entity
 {
 public:

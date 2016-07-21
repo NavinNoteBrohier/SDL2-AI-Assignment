@@ -14,7 +14,10 @@
 #include <vector>
 
 using namespace Helper;
-
+enum ResourceType
+{
+	Empty, Metal, Fuel, Depleted
+};
 class ship
 {
 public:

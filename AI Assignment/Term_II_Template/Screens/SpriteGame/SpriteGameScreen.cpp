@@ -37,7 +37,7 @@ vector<Node*> SystemOne;
 
 ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
 
-ship NavShip(TM_PODSHIP,1,1,25,25,25,25,0,0,false);
+ship NavShip(TM_PODSHIP,500,500,25,25,25,25,0,0,false);
 
 
 char tempStr[256];
@@ -68,12 +68,7 @@ static void drawScreen()
 	SDL_Rect winSize = Window::Box();
 	Window::Clear();
 
-	NavShip.SetTarget(&SystemOne);
 
-	NavShip.m_tex = TM_PODSHIP;
-	CameraShip.m_tex = TM_SHIP;
-
-	NavShip.SetTopSpeed(7);
 
 #pragma region //Scene
 	SDL_Rect s1 = { 0, 0,1680, 1050 };
@@ -84,6 +79,8 @@ static void drawScreen()
 	Game.UpdateStarSystem(WorldView, &SystemOne , CameraShip.ShipMat);
 	CameraShip.UpdateShip(WorldView);
 	NavShip.UpdateShip(WorldView);
+
+
 
  #pragma region //Debug 
 	static bool Debugging = false;
@@ -165,8 +162,14 @@ void OpenSpriteGame()
 		return;
 	}
 
-	Game.SpawnSystem(&SystemOne, 0, 0, 0, 1, 3, 4, 1,2);
+	Game.SpawnSystem(&SystemOne, 0, 0, 100, 1, 5, 10, 1,2);
+	
 
+	NavShip.SetTarget(&SystemOne);
+	NavShip.m_tex = TM_PODSHIP;
+	CameraShip.m_tex = TM_SHIP;
+
+	NavShip.SetTopSpeed(2);
 	gSM.mBData = l_gameData;
 	gSM.p_drawScreen = drawScreen;
 	gSM.mTexture = TM_SPRITEPAPER;

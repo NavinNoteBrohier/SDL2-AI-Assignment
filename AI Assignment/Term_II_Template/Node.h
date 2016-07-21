@@ -27,6 +27,12 @@ public:
 		MY = m_y;
 	}
 
+	void SetXY(float a_x, float a_y)
+	{
+		m_x += a_x;
+		m_y += a_y;
+	}
+
 	void SetParent(int a_parent)
 	{
 		m_parent = a_parent;

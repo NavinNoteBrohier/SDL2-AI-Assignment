@@ -17,4 +17,6 @@ namespace Helper
 	bool HELP_Keypresses(SDL_Scancode a_scancode);
 
 	int HELP_Random(int pmin, int pmax);
+
+//	float HELP_Randomf(float pmin, float pmax);
 };

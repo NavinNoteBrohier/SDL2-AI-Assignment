@@ -154,7 +154,7 @@ void ship::Steering()
 		i = 0;
 	}
 //	m_TopSpeed = 2.0f;
-	float Speed = 2;
+	float Speed = 0;
 	bool X = false;
 	bool Y = false;
 

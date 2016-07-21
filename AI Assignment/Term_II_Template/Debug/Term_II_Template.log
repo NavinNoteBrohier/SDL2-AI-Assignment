@@ -1,22 +1,41 @@
 ﻿  SpriteGameRoutines.cpp
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(32): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(34): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(145): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(158): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(168): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(180): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(195): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(29): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(31): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(119): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(128): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(138): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(140): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(141): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(152): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(154): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(155): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(166): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(168): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(169): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(177): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(179): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(180): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(180): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(190): warning C4018: '<': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(212): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(213): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(215): warning C4018: '>=': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(216): warning C4018: '>=': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(220): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(221): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(222): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(226): warning C4018: '>=': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(236): warning C4018: '>': signed/unsigned mismatch
+c:\users\navin.brohier\desktop\navin desktop  files\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(251): warning C4018: '<': signed/unsigned mismatch
   MathLib.lib(utility.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
 Entity.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Generating code
   Finished generating code
+MathLib.lib(utility.obj) : warning LNK4099: PDB 'MathLib.pdb' was not found with 'MathLib.lib(utility.obj)' or at 'C:\Users\Navin.Brohier\Desktop\Navin Desktop  Files\SDL2-AI-Assignment\AI Assignment\Debug\MathLib.pdb'; linking object as if no debug info
   Term_II_Template.vcxproj -> C:\Users\Navin.Brohier\Desktop\Navin Desktop  Files\SDL2-AI-Assignment\AI Assignment\Debug\Term_II_Template.exe
   Term_II_Template.vcxproj -> C:\Users\Navin.Brohier\Desktop\Navin Desktop  Files\SDL2-AI-Assignment\AI Assignment\Debug\Term_II_Template.pdb (Partial PDB)
