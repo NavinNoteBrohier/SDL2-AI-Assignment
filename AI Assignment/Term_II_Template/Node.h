@@ -116,8 +116,9 @@ public:
 
 	enum ResourceType
 	{
-		Empty, Metal, Fuel, Depleted
+		Empty, Home, Metal, Fuel, Depleted
 	};
+
 	float m_x;
 	float m_y;
 	int m_cost; 

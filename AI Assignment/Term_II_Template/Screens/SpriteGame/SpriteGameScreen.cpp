@@ -7,6 +7,7 @@
 #include "SpriteGameScreen.h"
 #include "SpriteGameRoutines.h"
 #include "ship.h"
+#include "../../Entity.h"
 #include "..\screenManager.h"
 #include "..\MainMenu\menuscreen.h"
 #include "..\..\Game Setup\main.h"
@@ -33,11 +34,11 @@ SpriteCharacterGame game(true);
 using namespace Helper;
 Matrix3 WorldView(1, 0, 0, 0, 1, 0,0,0, 1);
 vector<Node*> SystemOne;
-
+vector <int*> IdleShips;
 
 ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
 
-ship NavShip(TM_PODSHIP,500,500,25,25,25,25,0,0,false);
+vector<ship*> NavShip;
 
 
 char tempStr[256];
@@ -78,8 +79,11 @@ static void drawScreen()
 
 	Game.UpdateStarSystem(WorldView, &SystemOne , CameraShip.ShipMat);
 	CameraShip.UpdateShip(WorldView);
-	NavShip.UpdateShip(WorldView);
 
+	for (int i = 0; i < NavShip.size(); i++)
+	{
+		NavShip[i]->UpdateShip(WorldView);
+	}
 
 
  #pragma region //Debug 
@@ -162,14 +166,19 @@ void OpenSpriteGame()
 		return;
 	}
 
-	Game.SpawnSystem(&SystemOne, 0, 0, 100, 1, 5, 10, 1,2);
+	Game.SpawnSystem(&SystemOne, 0, 0, 100, 1, 10, 10, 1,2);
+	for (int j = 0; j < 10; j++)
+	{
+		NavShip.push_back(new ship(TM_PODSHIP, 500, 500, 25, 25, 25, 25, 0, 0, false));
+		NavShip[j]->SetTarget(&SystemOne);
+		NavShip[j]->m_tex = TM_PODSHIP;
+		NavShip[j]->SetTopSpeed(6);
+	}
+	//Entity NPC(&SystemOne,&NavShip);
 	
 
-	NavShip.SetTarget(&SystemOne);
-	NavShip.m_tex = TM_PODSHIP;
-	CameraShip.m_tex = TM_SHIP;
 
-	NavShip.SetTopSpeed(2);
+	CameraShip.m_tex = TM_SHIP;
 	gSM.mBData = l_gameData;
 	gSM.p_drawScreen = drawScreen;
 	gSM.mTexture = TM_SPRITEPAPER;

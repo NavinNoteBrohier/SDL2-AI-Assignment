@@ -127,9 +127,11 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 	{
 		(*a_waypoint).push_back(new Node(a_x , a_y,STAR));
 		(*a_waypoint)[k]->ChangeSprite(TM_SUN);
+		(*a_waypoint)[k]->SetNodeReq(0,Fuel);
 		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110, 110, 0, Rot);
 		m_stars++;
 		k++;
+		cout << "Star " << k << endl;
 	}
 	for (int i = 0; i < a_planet; i++)
 	{
@@ -138,12 +140,14 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 		(*a_waypoint).push_back(new Node(KL() * i *(110) + (a_unit), KL() * i * (110) + (a_unit), PLANET));
 		(*a_waypoint)[k]->ChangeSprite(TM_PLANETONE);
 		for (int i = 0; i < a_waypoint->size(); i++) { if ((*a_waypoint)[k]->m_x == (*a_waypoint)[i]->m_x && (*a_waypoint)[k]->m_y == (*a_waypoint)[i]->m_y) { (*a_waypoint)[k]->m_x += HELP_Random(100,200); (*a_waypoint)[k]->m_y += HELP_Random(100, 200);} }
-		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/2, 110/2, 0, Rot + 0.00025);
+		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/2, 110/2, 0, Rot + 0.00025 * KL());
 		(*a_waypoint)[k]->SetParent(0);
+		(*a_waypoint)[k]->SetNodeReq(0, Metal);
 		if ((*a_waypoint)[k - 1]->m_x == (*a_waypoint)[k]->m_x) { (*a_waypoint)[k]->m_x *= -1; }
 		if ((*a_waypoint)[k - 1]->m_y == (*a_waypoint)[k]->m_y) { (*a_waypoint)[k]->m_y *= -1; }
 		m_planets++;
 		k++;
+		cout << "Planet " << k << endl;
 	}
 	for (int i = 0; i < a_moons; i++)
 	{
@@ -151,13 +155,15 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 		while (j == 0) { j = HELP_Random(-1, 1); }
 		(*a_waypoint).push_back(new Node(KL() * i *(110) + (a_unit), KL() * i * (110) + (a_unit), MOON));
 		(*a_waypoint)[k]->ChangeSprite(TM_MOONONE);
+		(*a_waypoint)[k]->SetNodeReq(0, Fuel);
 		for (int i = 0; i < a_waypoint->size(); i++) { if ((*a_waypoint)[k]->m_x == (*a_waypoint)[i]->m_x && (*a_waypoint)[k]->m_y == (*a_waypoint)[i]->m_y) { (*a_waypoint)[k]->m_x += HELP_Random(100, 200); (*a_waypoint)[k]->m_y += HELP_Random(100, 200); } }
-		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/3, 110/3, 0, Rot + 0.0025);
+		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/3, 110/3, 0, Rot + 0.0025 * KL());
 		(*a_waypoint)[k]->SetParent(HELP_Random(a_star + 1, a_planet));
 		if ((*a_waypoint)[k - 1]->m_x == (*a_waypoint)[k]->m_x) { (*a_waypoint)[k]->m_x *= -1; }
 		if ((*a_waypoint)[k - 1]->m_y == (*a_waypoint)[k]->m_y) { (*a_waypoint)[k]->m_y *= -1; }
 		m_moons++;
 		k++;
+		cout << "Moon " << k << endl;
 	}
 	for (int i = 0; i < a_asteroid; i++)
 	{
@@ -165,23 +171,27 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 		while (j == 0) { j = HELP_Random(-1, 1); }
 		(*a_waypoint).push_back(new Node(KL() * i *(110) + (a_unit), KL() * i * (110) + (a_unit), PLANET));
 		(*a_waypoint)[k]->ChangeSprite(TM_PLANETONE);
+		(*a_waypoint)[k]->SetNodeReq(0, Metal);
 		for (int i = 0; i < a_waypoint->size(); i++) { if ((*a_waypoint)[k]->m_x == (*a_waypoint)[i]->m_x && (*a_waypoint)[k]->m_y == (*a_waypoint)[i]->m_y) { (*a_waypoint)[k]->m_x += HELP_Random(100, 200); (*a_waypoint)[k]->m_y += HELP_Random(100, 200); } }
-		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/4, 110/4, 0, Rot + 0.025);
+		(*a_waypoint)[k]->SetSprite(110, 110, 0, 0, 110/4, 110/4, 0, Rot + 0.025 * KL());
 		(*a_waypoint)[k]->SetParent(HELP_Random(a_star + 1, a_moons));
 		if ((*a_waypoint)[k - 1]->m_x == (*a_waypoint)[k]->m_x) { (*a_waypoint)[k]->m_x *= -1; }
 		if ((*a_waypoint)[k - 1]->m_y == (*a_waypoint)[k]->m_y) { (*a_waypoint)[k]->m_y *= -1; }
 		m_asteroids++;
 		k++;
+		cout << "Asteroid " << k << endl;
 	}
 
 	(*a_waypoint).push_back(new Node(a_unit + 100, a_unit + 100, SATELLITE));
-	(*a_waypoint)[k]->ChangeSprite(TM_BASESTATION);
+	(*a_waypoint)[k]->ChangeSprite(TM_BASESTATION);  
+	(*a_waypoint)[k]->SetNodeReq(0, Home);
 	for (int i = 0; i < a_waypoint->size(); i++) { if ((*a_waypoint)[k]->m_x == (*a_waypoint)[i]->m_x && (*a_waypoint)[k]->m_y == (*a_waypoint)[i]->m_y) { (*a_waypoint)[k]->m_x += HELP_Random(100, 200); (*a_waypoint)[k]->m_y += HELP_Random(100, 200); } }
-	(*a_waypoint)[k]->SetSprite(150, 100, 0, 0, 150/2.5, 100/2.5, 0, Rot + 0.000050);
+	(*a_waypoint)[k]->SetSprite(150, 100, 0, 0, 150/2.5, 100/2.5, 0, Rot + 0.000050 * KL());
 	(*a_waypoint)[k]->SetParent(HELP_Random(a_star + 1, a_planet));
 	if ((*a_waypoint)[k - 1]->m_x == (*a_waypoint)[k]->m_x) { (*a_waypoint)[k]->m_x *= -1; }
 	if ((*a_waypoint)[k - 1]->m_y == (*a_waypoint)[k]->m_y) { (*a_waypoint)[k]->m_y *= -1; }
 	m_satellites++;
+	cout << "Satellite " << k << endl;
 
 	bool DistanceCheck = false;
 	while (DistanceCheck == false)
@@ -190,10 +200,11 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 		for (int i = 0; i < (*a_waypoint).size(); i++)
 		{
 			if ((*a_waypoint)[i]->m_x > 1250) { (*a_waypoint)[i]->m_x -= 500; DistanceCheck = false; }
-			if ((*a_waypoint)[i]->m_y > 1250) { (*a_waypoint)[i]->m_x -= 500; DistanceCheck = false; }
+			if ((*a_waypoint)[i]->m_y > 1250) { (*a_waypoint)[i]->m_y -= 500; DistanceCheck = false; }
+			cout << "Distance Checking " << i <<  endl;
 		};
 	}
-
+	cout << "Distance Checked " << endl;
 	bool BB = false;
 	bool AA = false;
 	int j = 0;
@@ -201,6 +212,8 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 	int L = 0;
 	int M = 0;
 	int H = a_waypoint->size();
+
+	int Rotations = 0;
 
 	while (BB == false)
 	{
@@ -226,7 +239,10 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 			if (L >= a_waypoint->size()) {AA = true; }
 
 			j++;
-
+			Rotations++;
+			if (Rotations > 5000)
+			{ return; }
+			cout << "Iteration "<< Rotations << endl;
 		}
 		M++;
 		j = 0;
@@ -234,11 +250,15 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 		if (M == a_waypoint->size()) { BB = true; }
 		i++;
 		if (i > a_waypoint->size()) { i = 0; }
+		Rotations++;
+		if (Rotations > 5000)
+		{ return; }
+		cout << "Iteration " << Rotations << endl;
 	}
-
+	cout << "Iterated " << Rotations << " times" << endl;
 	i = 0;
 	j = 0;
-
+	cout << "System created" << endl;
 }
 
 void SpriteCharacterGame::UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_waypoint, Matrix3 CameraMat)
@@ -257,7 +277,11 @@ void SpriteCharacterGame::UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_
 		}
 		k++;
 	}
-} 
+}
+
+void SpriteCharacterGame::CollectIdleShips(vector<int*>* IdleShips)
+{
+}
 
 
 

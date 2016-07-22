@@ -39,6 +39,8 @@ ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_heigh
 	m_FrameY = a_frameY;
 
 	m_KeyControl = a_pcontrol;
+	m_cargo_capacity = 100;
+	AtDestination = false;
 }
 
 ship::~ship()
@@ -145,20 +147,20 @@ void ship::KeyPress()
 
 void ship::Steering()
 {
-	static int i = 0;
+	//static int i = 0;
 
 	if ((*Target).size()-1 == 0)return;
 
-	if (i > ((*Target).size() - 1))
+	if (Destination > ((*Target).size() - 1))
 	{
-		i = 0;
+		Destination = 0;
 	}
 //	m_TopSpeed = 2.0f;
 	float Speed = 0;
 	bool X = false;
 	bool Y = false;
 
-	Vector2 TargetVector((*Target)[i]->m_x, (*Target)[i]->m_y);
+	Vector2 TargetVector((*Target)[Destination]->m_x, (*Target)[Destination]->m_y);
 	Vector2 V;
 	Vector2 Pos(m_x, m_y);
 	Vector2 m_force;
@@ -179,14 +181,37 @@ void ship::Steering()
 	m_angle -= 90;
 
 
-	if(m_x <= (*Target)[i]->m_x + 5 && m_x >= (*Target)[i]->m_x - 1)
+	if(m_x <= (*Target)[Destination]->m_x + 10 && m_x >= (*Target)[Destination]->m_x - 10)
 	{ X = true; };
 
-	if (m_y <= (*Target)[i]->m_y + 5 && m_y >= (*Target)[i]->m_y - 1)
+	if (m_y <= (*Target)[Destination]->m_y + 10 && m_y >= (*Target)[Destination]->m_y - 10)
 	{ Y = true; };
 
-	if (X && Y) { i++; };
+	m_Home = 2;
+	if (X && Y && Destination == m_Home) {Deposit(); Idle = true; /* Destination = HELP_Random(0, Target->size()); */	AtDestination = true;	}
+	else if (X && Y) {Destination = m_Home; Collect(); AtDestination = true;};
 
+}
+
+void ship::Collect()
+{
+	int i = (*Target)[Destination]->rType;
+	m_rtype = (ResourceType)i;
+	m_cargo = m_cargo_capacity;
+	Destination = m_Home;
+}
+
+int ship::Deposit()
+{
+	int i = m_cargo;
+	m_rtype = Empty;
+	m_cargo = 0;
+	return i;
+}
+
+void ship::SetHome(int a_home)
+{
+	m_Home = a_home;
 }
 
 void ship::Saveship()

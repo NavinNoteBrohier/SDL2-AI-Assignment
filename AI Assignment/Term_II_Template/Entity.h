@@ -5,27 +5,37 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
+#include "Game Setup\main.h"
 #include "Game Setup\sdlWindow.h"
 #include "Game Setup\sdlResources.h"
 #include "Game Setup\Helper.h"
 #include "Screens\SpriteGame\ship.h"
 #include <vector>
 
+//enum ResourceType
+//{
+//	Empty, Home, Metal, Fuel, Depleted
+//};
+
 class Entity
 {
 public:
-	Entity(vector<Node*>* a_waypoint,int a_current,int a_rows, int a_cols);
-	void calculatecost();
-	void updateEntity();
-
+	Entity(vector<Node*>* a_waypoint, vector<ship*>* a_ship);
+	void updateEntity(vector <int*>* IdleShips);
+	int rMetal;
+	int rFuel;
 
 private:
 	vector<Node*>* m_nodes;
+	vector<ship*>* m_ship;
+
 	float m_x;
 	float m_y;
-	int m_cost;
-	int m_currentNode;
-	int m_rows;
-	int m_cols;
 
+	float turn;
+
+	bool Alive;
+	int m_Home;
+
+	int m_cost;
 };

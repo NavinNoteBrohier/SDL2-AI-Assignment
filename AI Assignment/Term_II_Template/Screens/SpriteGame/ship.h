@@ -16,7 +16,7 @@
 using namespace Helper;
 enum ResourceType
 {
-	Empty, Metal, Fuel, Depleted
+	Empty, Home, Metal, Fuel, Depleted
 };
 class ship
 {
@@ -48,12 +48,20 @@ public:
 	void ShipPos(float a_x, float a_y);
 	void KeyPress();
 	void Steering();
+	void Collect();
+	int Deposit();
+	void SetHome(int a_home);
 	void Saveship();
 	bool LoadShip();
 	void SetTopSpeed(float a_speed); 
 	void SetTarget(vector<Node*>* a_node);
 
 	int ReturnAngle();
+	int Destination;
+	bool AtDestination;
+	int fuel;
+	int m_Home;
+	bool Idle; 
 	Matrix3 ShipMat;
 	SDL_Texture* m_tex;
 protected:
@@ -65,6 +73,9 @@ protected:
 	Vector3		 m_Position;
 	SDL_Rect	 Dest;
 	vector<Node*>*	Target;
+	ResourceType	m_rtype;
+	int			m_cargo_capacity;
+	int			m_cargo;
 	bool		 m_save;
 	bool		 m_KeyControl;
 	float		 m_angle;

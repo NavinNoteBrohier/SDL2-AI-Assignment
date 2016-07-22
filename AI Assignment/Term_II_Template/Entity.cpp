@@ -2,39 +2,44 @@
 #include "Node.h"
 #include "Entity.h"
 
-Entity::Entity(vector<Node*>* a_nodes, int a_current, int a_rows, int a_cols)
+Entity::Entity(vector<Node*>* a_nodes, vector<ship*>* a_ship)
 {
 	m_nodes = a_nodes;
-	m_currentNode = a_current;
-	m_cols = a_cols;
-	m_rows = a_rows;
-}
+	m_ship = a_ship;
 
-void Entity::calculatecost()
-{
-	int VecSize = m_nodes->size();
+	rMetal = 100;
+	rFuel = 100;
+	Alive = true;
 
-	int p_tileA = (*m_nodes)[m_currentNode + 1]->m_cost;
-	int p_tileB = (*m_nodes)[m_currentNode + m_rows]->m_cost;
+	bool HomeSet = false;
+	bool ShipSet = false;
 
-	int p_tileC = (*m_nodes)[m_currentNode - 1]->m_cost;
-	int p_tileD = (*m_nodes)[m_currentNode - m_rows]->m_cost;
+	int i = 0;
+	turn = 100;
 
-	if (p_tileA < p_tileB)
+	while (HomeSet == false)
 	{
-		m_currentNode = m_currentNode + 1;
+		if ((*m_nodes)[i]->rType == Home) { m_Home = i; HomeSet = true; };
 	}
-	else if (p_tileB < p_tileA)
+
+	for (int j = 0; j < m_ship->size(); j++)
 	{
-		m_currentNode + m_rows;
+		(*m_ship)[j]->m_Home = m_Home;
 	}
-	else if (p_tileB < p_tileC)
-	{
-		m_currentNode + m_rows;
-	}
+
+
 
 }
 
-void Entity::updateEntity()
+void Entity::updateEntity(vector <int*>* IdleShips)
 {
+	if (rFuel <= 0) { Alive = false; };
+	if (Alive == false) { delete[] m_nodes->at(m_Home); }
+
+	turn -= 1;
+	if (turn == 0) { turn = 100; rFuel--;}
+
+	
+
+
 }
