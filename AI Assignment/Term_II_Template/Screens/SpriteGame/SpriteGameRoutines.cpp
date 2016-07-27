@@ -279,8 +279,21 @@ void SpriteCharacterGame::UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_
 	}
 }
 
-void SpriteCharacterGame::CollectIdleShips(vector<int*>* IdleShips)
+void SpriteCharacterGame::CollectIdleShips(vector<int*>* IdleShips, vector <ship*>* Ships)
 {
+	if (IdleShips->size() > 0)
+	{
+		for (int i = 0; i < IdleShips->size(); i++)
+		{
+			delete (*IdleShips)[i];
+			IdleShips->erase(IdleShips->begin() + i);
+		}
+	}
+
+	for (int i = 0; i < Ships->size(); i++)
+	{
+		if ((*Ships)[i]->Idle == true) { IdleShips->push_back(new int(i)); };
+	}
 }
 
 

@@ -12,18 +12,25 @@
 #include "Screens\SpriteGame\ship.h"
 #include <vector>
 
-//enum ResourceType
-//{
-//	Empty, Home, Metal, Fuel, Depleted
-//};
+
 
 class Entity
 {
 public:
-	Entity(vector<Node*>* a_waypoint, vector<ship*>* a_ship);
+	Entity(vector<Node*>* a_nodes, vector<ship*>* a_ship, vector<int*>* a_idle);
+
 	void updateEntity(vector <int*>* IdleShips);
-	int rMetal;
-	int rFuel;
+	
+	float rMetal;
+	float rFuel;
+	float FuelUse;
+
+	float CalculateFuelUse();
+
+	enum PriorityQ
+	{
+		Metal, Fuel
+	};
 
 private:
 	vector<Node*>* m_nodes;
@@ -33,6 +40,12 @@ private:
 	float m_y;
 
 	float turn;
+
+	int MetalThreshold;
+	int FuelThreshold;
+
+
+	float FuelEconomy;
 
 	bool Alive;
 	int m_Home;

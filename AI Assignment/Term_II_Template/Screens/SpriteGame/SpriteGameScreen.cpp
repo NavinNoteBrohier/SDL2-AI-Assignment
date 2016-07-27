@@ -176,7 +176,7 @@ void OpenSpriteGame()
 	}
 	//Entity NPC(&SystemOne,&NavShip);
 	
-
+	Entity PlayerOne(&SystemOne,&NavShip,&IdleShips);
 
 	CameraShip.m_tex = TM_SHIP;
 	gSM.mBData = l_gameData;

@@ -41,6 +41,8 @@ ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_heigh
 	m_KeyControl = a_pcontrol;
 	m_cargo_capacity = 100;
 	AtDestination = false;
+
+	Hull = 100;
 }
 
 ship::~ship()
@@ -296,7 +298,13 @@ void ship::UpdateShip(Matrix3 p_world)
 	Dest.h = (int)(m_height * p_world.m_floats[1][1]);
 
 	if (m_KeyControl == true) { KeyPress(); }
-	else{Steering();}
+	else
+	{
+		if (Hull > 0)
+		{
+			Steering();
+		}
+	}
 	DrawShip();
 }
 

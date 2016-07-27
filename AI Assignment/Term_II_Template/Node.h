@@ -10,9 +10,7 @@
 #include "Game Setup\Helper.h"
 #include "Include\utility.h"
 
-
 using namespace Helper;
-
 
 class Node
 {

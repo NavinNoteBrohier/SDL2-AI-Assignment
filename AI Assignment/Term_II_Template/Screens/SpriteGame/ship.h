@@ -61,6 +61,7 @@ public:
 	bool AtDestination;
 	int fuel;
 	int m_Home;
+	float Hull;
 	bool Idle; 
 	Matrix3 ShipMat;
 	SDL_Texture* m_tex;
