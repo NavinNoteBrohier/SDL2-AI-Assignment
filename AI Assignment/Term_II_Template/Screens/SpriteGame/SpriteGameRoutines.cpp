@@ -105,7 +105,6 @@ void SpriteCharacterGame::SpawnNodes(int a_rows, int a_cols, int a_x, int a_y, i
 	(*a_waypoint)[k - 1]->ChangeSprite(TM_NODEEND);
 }
 
-
 int KL()
 {
 int i = 0;
@@ -187,7 +186,7 @@ void SpriteCharacterGame::SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_
 	(*a_waypoint)[k]->SetNodeReq(0, Home);
 	for (int i = 0; i < a_waypoint->size(); i++) { if ((*a_waypoint)[k]->m_x == (*a_waypoint)[i]->m_x && (*a_waypoint)[k]->m_y == (*a_waypoint)[i]->m_y) { (*a_waypoint)[k]->m_x += HELP_Random(100, 200); (*a_waypoint)[k]->m_y += HELP_Random(100, 200); } }
 	(*a_waypoint)[k]->SetSprite(150, 100, 0, 0, 150/2.5, 100/2.5, 0, Rot + 0.000050 * KL());
-	(*a_waypoint)[k]->SetParent(HELP_Random(a_star + 1, a_planet));
+	(*a_waypoint)[k]->SetParent(a_star);
 	if ((*a_waypoint)[k - 1]->m_x == (*a_waypoint)[k]->m_x) { (*a_waypoint)[k]->m_x *= -1; }
 	if ((*a_waypoint)[k - 1]->m_y == (*a_waypoint)[k]->m_y) { (*a_waypoint)[k]->m_y *= -1; }
 	m_satellites++;
@@ -276,23 +275,6 @@ void SpriteCharacterGame::UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_
 			(*a_waypoint)[k]->UpdateNode(a_worldView,	(*a_waypoint)[(*a_waypoint)[k]->m_parent]->NodeMat);
 		}
 		k++;
-	}
-}
-
-void SpriteCharacterGame::CollectIdleShips(vector<int*>* IdleShips, vector <ship*>* Ships)
-{
-	if (IdleShips->size() > 0)
-	{
-		for (int i = 0; i < IdleShips->size(); i++)
-		{
-			delete (*IdleShips)[i];
-			IdleShips->erase(IdleShips->begin() + i);
-		}
-	}
-
-	for (int i = 0; i < Ships->size(); i++)
-	{
-		if ((*Ships)[i]->Idle == true) { IdleShips->push_back(new int(i)); };
 	}
 }
 

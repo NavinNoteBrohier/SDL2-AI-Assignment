@@ -22,7 +22,8 @@ Vector2 Normalize(Vector2 V)
 	return V.normalised();
 };
 
-ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY, bool a_pcontrol)
+ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY, 
+	bool a_pcontrol)
 {
 	m_tex = a_tex;
 
@@ -41,6 +42,8 @@ ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_heigh
 	m_KeyControl = a_pcontrol;
 	m_cargo_capacity = 100;
 	AtDestination = false;
+
+
 
 	Hull = 100;
 }
@@ -189,9 +192,11 @@ void ship::Steering()
 	if (m_y <= (*Target)[Destination]->m_y + 10 && m_y >= (*Target)[Destination]->m_y - 10)
 	{ Y = true; };
 
-	m_Home = 2;
-	if (X && Y && Destination == m_Home) {Deposit(); Idle = true; /* Destination = HELP_Random(0, Target->size()); */	AtDestination = true;	}
-	else if (X && Y) {Destination = m_Home; Collect(); AtDestination = true;};
+	//m_Home = 2;
+	if (X && Y && Destination == m_Home) 
+	{ Deposit(); Idle = true; AtDestination = true;	 }
+	else if (X && Y)
+	{ Destination = m_Home; Collect(); AtDestination = true; Hull -= 1; };
 
 }
 
@@ -206,6 +211,9 @@ void ship::Collect()
 int ship::Deposit()
 {
 	int i = m_cargo;
+	if (m_rtype == Metal) 
+	{ (*m_deliveryPointA) += m_cargo; }
+	else {(*m_deliveryPointB) += m_cargo;}
 	m_rtype = Empty;
 	m_cargo = 0;
 	return i;
@@ -271,6 +279,18 @@ void ship::SetTarget(vector<Node*>* a_node)
 	Target = a_node;
 }
 
+void ship::SetDestination(int a_dest)
+{
+	Destination = a_dest;
+	Idle = false;
+}
+
+void ship::SetDeposits(float a_deliverypointA, float a_deliverypointB)
+{
+	m_deliveryPointA = &a_deliverypointA;
+	m_deliveryPointB = &a_deliverypointB;
+}
+
 int ship::ReturnAngle()
 {
 	return m_angle;
@@ -278,7 +298,6 @@ int ship::ReturnAngle()
 
 void ship::DrawShip()
 {
-
 	HELP_DrawSprite(m_tex, m_FrameX, m_FrameY, m_framewidth, m_frameheight, ShipMat.m_floats[2][0], ShipMat.m_floats[2][1],
 		Dest.w, Dest.h, (int)m_delay, m_angle);
 }

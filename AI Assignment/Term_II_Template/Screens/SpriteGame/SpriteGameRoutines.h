@@ -6,6 +6,7 @@
 #include "../../Game Setup/Helper.h"
 #include "ship.h"
 #include "../../Node.h"
+
 using std::string;
 using std::vector;
 
@@ -24,7 +25,7 @@ public:
 	void SpawnNodes(int a_rows, int a_cols, int a_x, int a_y, int a_increment, vector<Node*>* a_waypoint);
 	void SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_y, int a_unit,int a_star, int a_planet, int a_moons, int a_satellite, int a_asteroid);
 	void UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_waypoint,Matrix3 CameraMat);
-	void CollectIdleShips(vector <int*>* IdleShips, vector <ship*>* Ships);
+
 	vector<Node*> Waypoint;
 	void ResetData();
 	bool init();

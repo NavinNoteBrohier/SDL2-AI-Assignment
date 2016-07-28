@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 
+
 using namespace Helper;
 enum ResourceType
 {
@@ -22,7 +23,8 @@ class ship
 {
 public:
 	ship();
-	ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY, bool a_pcontrol);
+	ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_height, int a_frameWidth, int a_frameHeight, int a_frameX, int a_frameY,
+		bool a_pcontrol);
 	~ship();
 	enum Wepname
 	{
@@ -56,6 +58,10 @@ public:
 	void SetTopSpeed(float a_speed); 
 	void SetTarget(vector<Node*>* a_node);
 
+	void SetDestination(int a_dest);
+
+	void SetDeposits(float a_deliverypointA, float a_deliverypointB);
+
 	int ReturnAngle();
 	int Destination;
 	bool AtDestination;
@@ -65,6 +71,7 @@ public:
 	bool Idle; 
 	Matrix3 ShipMat;
 	SDL_Texture* m_tex;
+	ResourceType	m_rtype;
 protected:
 	string		 m_name;
 	Matrix3		 Translation;
@@ -74,7 +81,7 @@ protected:
 	Vector3		 m_Position;
 	SDL_Rect	 Dest;
 	vector<Node*>*	Target;
-	ResourceType	m_rtype;
+
 	int			m_cargo_capacity;
 	int			m_cargo;
 	bool		 m_save;
@@ -98,6 +105,8 @@ protected:
 	int			 m_FrameY;
 	float		 m_delay;
 
+	float		 *m_deliveryPointA;
+	float		 *m_deliveryPointB;
 
 };
 

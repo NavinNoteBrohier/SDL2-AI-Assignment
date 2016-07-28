@@ -33,13 +33,18 @@ static string SpriteName = "Sprite Game";
 SpriteCharacterGame game(true);
 using namespace Helper;
 Matrix3 WorldView(1, 0, 0, 0, 1, 0,0,0, 1);
-vector<Node*> SystemOne;
-vector <int*> IdleShips;
 
-ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
+Entity PlayerOne;
+
+vector<Node*> SystemOne;
+
+vector <int*> IdleShips;
 
 vector<ship*> NavShip;
 
+
+
+ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
 
 char tempStr[256];
 
@@ -85,6 +90,7 @@ static void drawScreen()
 		NavShip[i]->UpdateShip(WorldView);
 	}
 
+	PlayerOne.updateEntity(&IdleShips);
 
  #pragma region //Debug 
 	static bool Debugging = false;
@@ -131,25 +137,29 @@ static void drawScreen()
 		sprintf_s(tempStr, "0 = %d", HELP_Keypresses(SDL_SCANCODE_0));
 		Window::printString(10 + 4, 300, tempStr, cBlue, 15);
 
-		HELP_DrawSprite(TM_NODE, 0, 0, 50, 50, 50, 600, 50, 50, 0, 0);
-		sprintf_s(tempStr, "1");
-		Window::printString(10 + 4, 600, tempStr, cBlue, 15);
+		sprintf_s(tempStr, "Fuel = %d", PlayerOne.rFuel);
+		Window::printString(10 + 4, 320, tempStr, cBlue, 15);
 
-		HELP_DrawSprite(TM_NODEEND, 0, 0, 50, 50, 50, 670, 50, 50, 0, 0);
-		sprintf_s(tempStr, "1");
-		Window::printString(10 + 4, 670, tempStr, cBlue, 15);
+		sprintf_s(tempStr, "Fuel use = %d", PlayerOne.FuelUse);
+		Window::printString(10 + 4, 340, tempStr, cBlue, 15);
 
-		HELP_DrawSprite(TM_NODEEMPTY, 0, 0, 50, 50, 50, 740, 50, 50, 0, 0);
-		sprintf_s(tempStr, "2");
-		Window::printString(10 + 4, 740, tempStr, cBlue, 15);
+		sprintf_s(tempStr, "Metal = %d", PlayerOne.rMetal);
+		Window::printString(10 + 4, 360, tempStr, cBlue, 15);
 
-		HELP_DrawSprite(TM_NODEASTEROID, 0, 0, 50, 50, 50, 810, 50, 50, 0, 0);
-		sprintf_s(tempStr, "3");
-		Window::printString(10 + 4, 810, tempStr, cBlue, 15);
+		sprintf_s(tempStr, "Metal Threshold = %d", PlayerOne.MetalThreshold);
+		Window::printString(10 + 4, 360, tempStr, cBlue, 15);
 
-		HELP_DrawSprite(TM_NODEENEMY, 0, 0, 50, 50, 50, 880, 50, 50, 0, 0);
-		sprintf_s(tempStr, "4");
-		Window::printString(10 + 4, 880, tempStr, cBlue, 15);
+		sprintf_s(tempStr, "Ships = %d", NavShip.size());
+		Window::printString(10 + 4, 380, tempStr, cBlue, 15);
+
+		sprintf_s(tempStr, "Turn = %d", PlayerOne.turn);
+		Window::printString(10 + 4, 400, tempStr, cBlue, 15);
+
+		sprintf_s(tempStr, "IdleShips = %d", IdleShips.size());
+		Window::printString(10 + 4, 420, tempStr, cBlue, 15);
+
+
+
 	}
 #pragma endregion
 
@@ -172,13 +182,12 @@ void OpenSpriteGame()
 		NavShip.push_back(new ship(TM_PODSHIP, 500, 500, 25, 25, 25, 25, 0, 0, false));
 		NavShip[j]->SetTarget(&SystemOne);
 		NavShip[j]->m_tex = TM_PODSHIP;
-		NavShip[j]->SetTopSpeed(6);
+		NavShip[j]->SetTopSpeed(8);
 	}
 	//Entity NPC(&SystemOne,&NavShip);
 	
-	Entity PlayerOne(&SystemOne,&NavShip,&IdleShips);
+	PlayerOne.Construct(&SystemOne,&NavShip,&IdleShips);
 
-	CameraShip.m_tex = TM_SHIP;
 	gSM.mBData = l_gameData;
 	gSM.p_drawScreen = drawScreen;
 	gSM.mTexture = TM_SPRITEPAPER;

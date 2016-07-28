@@ -10,6 +10,7 @@
 #include "Game Setup\sdlResources.h"
 #include "Game Setup\Helper.h"
 #include "Screens\SpriteGame\ship.h"
+#include "Screens\SpriteGame\SpriteGameRoutines.h"
 #include <vector>
 
 
@@ -17,19 +18,27 @@
 class Entity
 {
 public:
-	Entity(vector<Node*>* a_nodes, vector<ship*>* a_ship, vector<int*>* a_idle);
+
+	Entity();
+	void Construct(vector<Node*>* a_nodes, vector<ship*>* a_ship, vector<int*>* a_idle);
 
 	void updateEntity(vector <int*>* IdleShips);
 	
 	float rMetal;
 	float rFuel;
 	float FuelUse;
+	int MetalThreshold;
+	float turn;
+	float CalculateFuelUse(vector <int*>* IdleShips);
+	void CalculatePriotity(vector <int*>* IdleShips);
+	void CollectIdleShips( vector <int*>* IdleShips, vector <ship*>* a_Ships);
+	void FindRec();
+	//void BuildShip();
 
-	float CalculateFuelUse();
 
 	enum PriorityQ
 	{
-		Metal, Fuel
+		pr_Metal, pr_Fuel
 	};
 
 private:
@@ -39,13 +48,13 @@ private:
 	float m_x;
 	float m_y;
 
-	float turn;
+	int C_Fuel;
+	int C_Metal;
 
-	int MetalThreshold;
 	int FuelThreshold;
-
-
 	float FuelEconomy;
+
+	int BuildCost;
 
 	bool Alive;
 	int m_Home;
