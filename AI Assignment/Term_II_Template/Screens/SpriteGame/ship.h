@@ -65,12 +65,19 @@ public:
 	int ReturnAngle();
 	int Destination;
 	bool AtDestination;
+
+
+	vector <Node*> Path;
+	Node* StartDes;
+	Node* EndDes;
+
 	int fuel;
 	int m_Home;
 	float Hull;
 	bool Idle; 
 	Matrix3 ShipMat;
 	SDL_Texture* m_tex;
+	bool Pathing;
 	ResourceType	m_rtype;
 protected:
 	string		 m_name;
@@ -107,6 +114,8 @@ protected:
 
 	float		 *m_deliveryPointA;
 	float		 *m_deliveryPointB;
+
+
 
 };
 

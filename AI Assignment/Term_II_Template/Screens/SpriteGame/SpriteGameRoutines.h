@@ -26,6 +26,8 @@ public:
 	void SpawnSystem(vector<Node*>* a_waypoint, int a_x, int a_y, int a_unit,int a_star, int a_planet, int a_moons, int a_satellite, int a_asteroid);
 	void UpdateStarSystem(Matrix3 a_worldView,vector<Node*>* a_waypoint,Matrix3 CameraMat);
 
+
+
 	vector<Node*> Waypoint;
 	void ResetData();
 	bool init();

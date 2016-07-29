@@ -44,7 +44,6 @@ ship::ship(SDL_Texture* a_tex,float a_x, float a_y, float a_width, float a_heigh
 	AtDestination = false;
 
 
-
 	Hull = 100;
 }
 
@@ -193,11 +192,29 @@ void ship::Steering()
 	{ Y = true; };
 
 	//m_Home = 2;
-	if (X && Y && Destination == m_Home) 
-	{ Deposit(); Idle = true; AtDestination = true;	 }
-	else if (X && Y)
-	{ Destination = m_Home; Collect(); AtDestination = true; Hull -= 1; };
+	if (Pathing == false)
+	{
+		if (X && Y && Destination == m_Home)
+		{
+			Deposit(); Idle = true; AtDestination = true;
+		}
+		else if (X && Y)
+		{
+			Destination = m_Home; Collect(); AtDestination = true; Hull -= 1;
+		};
+	}
+	else
+	{
+	if (X && Y && Path.size() > 0)
+		{
+			Path.erase(Path.begin());
 
+			if (Path.size() > 0)
+			{
+				Destination = Path[0]->Index;
+			}
+		};
+	}
 }
 
 void ship::Collect()

@@ -12,7 +12,7 @@
 #include "Screens\SpriteGame\ship.h"
 #include "Screens\SpriteGame\SpriteGameRoutines.h"
 #include <vector>
-
+#include <algorithm>
 
 
 class Entity
@@ -60,4 +60,16 @@ private:
 	int m_Home;
 
 	int m_cost;
+};
+
+class Pathing : public Entity
+{
+public:
+	
+	static vector<Node*> FindPath(Node* start, Node* end);
+	static bool CompareG(Node* a, Node* b);
+	static bool FindNode(vector<Node*> Vector, Node* node);
+
+private:
+
 };

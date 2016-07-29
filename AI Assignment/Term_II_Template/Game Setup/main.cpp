@@ -22,6 +22,7 @@
 #include <string>
 #include <vector>
 
+#include "Helper.h"
 #include "main.h"
 #include "sdlWindow.h"
 #include "sdlResources.h"
@@ -248,7 +249,7 @@ int main(int argc, char* args[])
 			}
 		}
 
-		(*gSM.p_drawScreen)();
+		(*gSM.p_drawScreen)(&e);
 	}
 
 	//Free resources and close SDL

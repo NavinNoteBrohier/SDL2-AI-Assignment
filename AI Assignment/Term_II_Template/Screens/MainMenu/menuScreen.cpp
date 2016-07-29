@@ -54,7 +54,7 @@ static ButtonData l_menuData[] =
 
 static BUTTON_STATE checkButtons(BUTTON_ID p_buttonId);
 static BUTTON_RETURN actOnButton(BUTTON_ID p_buttonId, short shiftKey);
-static void drawMenuScreen();
+static void drawMenuScreen(SDL_Event * e);
 
 //! openMenuScreen 
 //! 20150426
@@ -101,7 +101,7 @@ static BUTTON_RETURN actOnButton(BUTTON_ID p_buttonId, short shiftKey)
 
 //! drawMenuScreen 
 //! 20150426
-static void drawMenuScreen()
+static void drawMenuScreen(SDL_Event * e)
 {
 	gSM.centreButtons();
 

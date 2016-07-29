@@ -194,4 +194,89 @@ void Entity::FindRec()
 
 }
 
+vector<Node*> Pathing::FindPath(Node * start, Node * end)
+{
+	if (start == nullptr || end == nullptr)
+	{
+		return vector<Node*>();
+	}
 
+	vector<Node*> OpenList;
+	vector<Node*> ClosedList;
+
+	OpenList.push_back(start);
+	Node* CurrentNode = nullptr;
+
+	while (OpenList.size() > 0)
+	{
+		std::sort(OpenList.begin(), OpenList.end(),CompareG);
+		CurrentNode = OpenList[0];
+		if (CurrentNode == end)
+		{
+			break;
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			Node* connection = CurrentNode->Connections[i];
+			if (connection == nullptr || FindNode(ClosedList, connection))
+			{
+				continue;
+			}
+		
+			int TempG = CurrentNode->g + connection->m_cost;
+			if (FindNode(OpenList, connection) == false)
+			{
+				OpenList.push_back(connection);
+			}
+			else if (TempG > connection->g)
+			{
+				continue;
+			}
+
+			connection->g = TempG;
+			connection->FromNode = CurrentNode;
+
+		}
+		OpenList.erase(OpenList.begin());
+		ClosedList.push_back(CurrentNode);
+	}
+
+	if (CurrentNode != end)
+	{
+		return vector<Node*>();
+	}
+
+	vector<Node*> Path;
+
+	while (CurrentNode != start)
+	{
+		Path.push_back(CurrentNode);
+		CurrentNode = CurrentNode->FromNode;
+	}
+
+	std::reverse(Path.begin(), Path.end());
+
+	
+
+	return Path;
+}
+
+bool Pathing::CompareG(Node * a, Node * b)
+{
+	return a->g < b->g;
+}
+
+bool Pathing::FindNode(vector<Node*> Vector, Node * node)
+{
+	bool Result = false;
+	
+	for (int i = 0; i < Vector.size(); i++)
+	{
+		if (Vector[i] == node)
+		{
+			Result = true;
+		}
+	}
+	
+	return Result;
+}

@@ -32,6 +32,7 @@ SpriteCharacterGame Game;
 static string SpriteName = "Sprite Game";
 SpriteCharacterGame game(true);
 using namespace Helper;
+
 Matrix3 WorldView(1, 0, 0, 0, 1, 0,0,0, 1);
 
 Entity PlayerOne;
@@ -42,8 +43,10 @@ vector <int*> IdleShips;
 
 vector<ship*> NavShip;
 
+vector<Node*> PathfindingNodes;
 
-
+ship PathfindingShip(TM_SHIP,1,1,50,50,88,77,0,0,false);
+ 
 ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
 
 char tempStr[256];
@@ -69,10 +72,9 @@ static BUTTON_STATE checkButtons(BUTTON_ID p_buttonId)
 }
 
 //! drawScreen - standard draw screen routine
-static void drawScreen()
+static void drawScreen(SDL_Event* e)
 {
 	SDL_Rect winSize = Window::Box();
-	Window::Clear();
 
 
 
@@ -85,18 +87,21 @@ static void drawScreen()
 	Game.UpdateStarSystem(WorldView, &SystemOne , CameraShip.ShipMat);
 	CameraShip.UpdateShip(WorldView);
 
+#pragma region // Solar System
 	for (int i = 0; i < NavShip.size(); i++)
 	{
 		NavShip[i]->UpdateShip(WorldView);
 	}
 
 	PlayerOne.updateEntity(&IdleShips);
+#pragma endregion
 
  #pragma region //Debug 
 	static bool Debugging = false;
 	if (HELP_Keypresses(SDL_SCANCODE_HOME)) { Debugging = true; };
 	if(Debugging == true)
 	{
+
 		if (HELP_Keypresses(SDL_SCANCODE_INSERT)) { Debugging = false; }
 		sprintf_s(tempStr, "Ship Angle = %d", CameraShip.ReturnAngle());
 		Window::printString(10 + 4, 20, tempStr, cBlue, 15); 
@@ -163,6 +168,56 @@ static void drawScreen()
 	}
 #pragma endregion
 
+#pragma region // Pathfinding
+	static bool Pathfinding = false;
+	if (HELP_Keypresses(SDL_SCANCODE_4)) { Pathfinding = true; };
+	if (Pathfinding == true)
+	{
+		if (HELP_Keypresses(SDL_SCANCODE_5)) { Pathfinding = false; }
+
+			for (int i = 0; i < PathfindingNodes.size(); i++)
+			{
+				PathfindingNodes[i]->UpdateNode(WorldView);
+			}
+			
+			
+			int imX, imY;
+			SDL_GetMouseState(&imX, &imY);
+
+
+		//if (HELP_Mousepresses(e) == 1)
+		//{
+		//	for (int i = 0; i < PathfindingNodes.size(); i++)
+		//	{
+		//		if (PathfindingNodes[i]->m_x -25 <= imX && PathfindingNodes[i]->m_x + 25 >= imX && 
+		//			PathfindingNodes[i]->m_y -25 <= imY && PathfindingNodes[i]->m_y + 25 >= imY)
+		//		{
+		//			PathfindingShip.StartDes = PathfindingNodes[i];
+		//			PathfindingShip.Path = Pathing::FindPath(PathfindingShip.StartDes, PathfindingShip.EndDes);
+		//		}
+		//	}
+		//	cout << PathfindingShip.StartDes << endl;
+		//}
+		if (HELP_Mousepresses(e) == 2)
+			{
+				for (int i = 0; i < PathfindingNodes.size(); i++)
+				{
+					if (PathfindingNodes[i]->m_x - 25 <= imX && PathfindingNodes[i]->m_x + 25 >= imX && 
+						PathfindingNodes[i]->m_y - 25 <= imY && PathfindingNodes[i]->m_y + 25 >= imY)
+					{
+						PathfindingShip.StartDes = PathfindingNodes[PathfindingShip.Destination];
+						PathfindingShip.EndDes = PathfindingNodes[i];
+						PathfindingShip.Path = Pathing::FindPath(PathfindingShip.StartDes, PathfindingShip.EndDes);
+					}
+				}
+				cout << PathfindingShip.EndDes << endl;
+			}
+
+			PathfindingShip.UpdateShip(WorldView);
+		
+	}
+
+#pragma endregion
 	// and update the current window rectangle
 
 	Window::Present();
@@ -186,7 +241,17 @@ void OpenSpriteGame()
 	}
 	//Entity NPC(&SystemOne,&NavShip);
 	
+	PathfindingShip.SetTopSpeed(4);
+	PathfindingShip.m_tex = TM_SHIP;
+	PathfindingShip.SetTarget(&PathfindingNodes);
+	PathfindingShip.Pathing = true;
+
 	PlayerOne.Construct(&SystemOne,&NavShip,&IdleShips);
+
+	PathfindingShip.SetTarget(&PathfindingNodes);
+
+	Game.SpawnNodes(3, 3, 130, 130, 105, &PathfindingNodes);
+
 
 	gSM.mBData = l_gameData;
 	gSM.p_drawScreen = drawScreen;

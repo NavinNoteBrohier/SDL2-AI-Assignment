@@ -78,7 +78,7 @@ public:
 
 	BUTTON_STATE(*p_buttonCheck)(BUTTON_ID p_buttonId);
 	BUTTON_RETURN(*p_buttonHit)(BUTTON_ID p_buttonId, short shiftKey);
-	void(*p_drawScreen)();
+	void(*p_drawScreen)(SDL_Event *a_e);
 	bool(*p_checkKeyboard)(SDL_Event *a_e);
 	// pointer to the current button data
 	ButtonData *mBData;

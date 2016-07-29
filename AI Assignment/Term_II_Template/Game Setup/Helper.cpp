@@ -48,6 +48,24 @@ namespace Helper
 		return false;
 	}
 
+	int HELP_Mousepresses(SDL_Event * e)
+	{		
+		if (e->type == SDL_MOUSEBUTTONDOWN) 
+		{ 
+			switch (e->button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				return 1;
+			case SDL_BUTTON_RIGHT:
+				return 2;
+			default:
+				cout << "Dank Memes dot dat" << endl;
+				return 0;
+			}
+		}
+		return 0;
+	}
+
 	int HELP_Random(int pMin, int pMax)
 	{
 		return (rand() % (pMax + 1 - pMin)) + pMin;

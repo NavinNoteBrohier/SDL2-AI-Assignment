@@ -90,11 +90,42 @@ void SpriteCharacterGame::SpawnNodes(int a_rows, int a_cols, int a_x, int a_y, i
 		for (int j = 0; j < a_cols; j++)
 		{
 			layout[i][j] = HELP_Random(EMPTYROOM, ENEMYROOM);
-			(*a_waypoint).push_back(new Node(a_x + a_increment*j, a_y + a_increment * i, layout[i][j]));
+			(*a_waypoint).push_back(new Node(a_x + a_increment*j, a_y + a_increment * i, 1 ));
 			if (layout[i][j] == EMPTYROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEEMPTY); }
 			else if (layout[i][j] == ASTEROIDROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEASTEROID); }
 			else if (layout[i][j] == ENEMYROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEENEMY); };
 			(*a_waypoint)[k]->SetSprite(50, 50, 0, 0, 50, 50, 0, 0.05f);
+			(*a_waypoint)[k]->Index = k;
+			k++;
+		}
+	}
+
+	k = 0;
+
+	for (int i = 0; i < a_rows; i++)
+	{
+		for (int j = 0; j < a_cols; j++)
+		{
+			if (j > 0)
+			{
+				(*a_waypoint)[k]->Connections[0] = (*a_waypoint)[k - 1];
+			}
+
+			if (j < a_cols - 1)
+			{
+				(*a_waypoint)[k]->Connections[1] = (*a_waypoint)[k + 1];
+			}
+
+			if (i > 0)
+			{
+				(*a_waypoint)[k]->Connections[2] = (*a_waypoint)[k - a_cols];
+			}
+
+			if (i < a_rows - 1)
+			{
+				(*a_waypoint)[k]->Connections[3] = (*a_waypoint)[k + a_cols];
+			}
+
 			k++;
 		}
 	}

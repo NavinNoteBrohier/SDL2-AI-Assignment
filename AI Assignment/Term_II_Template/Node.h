@@ -9,8 +9,12 @@
 #include "Game Setup\sdlResources.h"
 #include "Game Setup\Helper.h"
 #include "Include\utility.h"
+#include <vector>
 
+using std::vector;
 using namespace Helper;
+
+
 
 class Node
 {
@@ -23,6 +27,11 @@ public:
 		m_cost = a_cost;
 		MX = m_x;
 		MY = m_y;
+
+		for (int i = 0; i < 4; i++)
+		{
+			Connections[i] = nullptr;
+		}
 	}
 
 	void SetXY(float a_x, float a_y)
@@ -50,7 +59,17 @@ public:
 
 	void DrawNode()
 	{
+		
 		HELP_DrawSprite(m_sprite,m_FrameX,m_FrameY,m_frameWidth,m_frameHeight, NodeMat.m_floats[2][0], NodeMat.m_floats[2][1], Dest.w, Dest.h,m_delay,m_angle);
+
+		for (int i = 0; i < 4; i++)
+		{
+			if (Connections[i] != nullptr)
+			{
+				Window::setDrawColor(255, 255, 255, 255);
+				Window::drawLine(NodeMat.m_floats[2][0], NodeMat.m_floats[2][1], Connections[i]->m_x, Connections[i]->m_y);
+			}
+		}
 	}; 
 
 	void UpdateNode(Matrix3 p_world)
@@ -112,6 +131,14 @@ public:
 		m_sprite = a_sprite;
 	}
 
+	void setQueued(bool a) { Queued = a; };
+
+	void SetVisited(bool a) { Visited = a; };
+
+	Node* Connections[4];
+
+
+
 	enum ResourceType
 	{
 		Empty, Home, Metal, Fuel, Depleted
@@ -124,6 +151,11 @@ public:
 	ResourceType rType;
 	int m_ResourceAmount;
 	int m_parent;
+
+	int g;
+	int Index;
+
+	Node* FromNode;
 
 private:
 	SDL_Rect Dest;
@@ -138,10 +170,10 @@ private:
 	float m_RotSpeed;
 	float MX ;
 	float MY ;
-	
+	bool Visited;
+	bool Queued;
 
-
-
+	int Position[1][1];
 
 	SDL_Texture* m_sprite;
 	void setRotateZ(Matrix3 p_parent, float a_num)
@@ -160,3 +192,10 @@ private:
 	}
 };
 
+class Map
+{
+public:
+
+
+private:
+};
