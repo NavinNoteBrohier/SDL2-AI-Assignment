@@ -155,14 +155,14 @@ void ship::Steering()
 
 	if ((*Target).size()-1 == 0)return;
 
-	if (Destination > ((*Target).size() - 1))
+	if (Destination > (int)((*Target).size() - 1))
 	{
 		Destination = 0;
 	}
 //	m_TopSpeed = 2.0f;
 	float Speed = 0;
-	bool X = false;
-	bool Y = false;
+	 X = false;
+	 Y = false;
 
 	Vector2 TargetVector((*Target)[Destination]->m_x, (*Target)[Destination]->m_y);
 	Vector2 V;
@@ -181,46 +181,79 @@ void ship::Steering()
 	m_y = Pos.y;
 
 	m_angle = atan2(Velocity.x,-Velocity.y);
-	m_angle *= 180 / M_PI;
+	m_angle *= 180 / (float)M_PI;
 	m_angle -= 90;
 
+	if (Pathing == false)
+	{
+		if (m_x <= (*Target)[Destination]->m_x + 10 && m_x >= (*Target)[Destination]->m_x - 10)
+		{
+			X = true;
+		};
 
-	if(m_x <= (*Target)[Destination]->m_x + 10 && m_x >= (*Target)[Destination]->m_x - 10)
-	{ X = true; };
+		if (m_y <= (*Target)[Destination]->m_y + 10 && m_y >= (*Target)[Destination]->m_y - 10)
+		{
+			Y = true;
+		};
+	}
+	else
+	{
+		if (m_x <= (*Target)[Destination]->m_x + 5 && m_x >= (*Target)[Destination]->m_x - 5)
+		{
+			X = true;
+		};
 
-	if (m_y <= (*Target)[Destination]->m_y + 10 && m_y >= (*Target)[Destination]->m_y - 10)
-	{ Y = true; };
+		if (m_y <= (*Target)[Destination]->m_y + 5 && m_y >= (*Target)[Destination]->m_y - 5)
+		{
+			Y = true;
+		};
+	};
+
 
 	//m_Home = 2;
 	if (Pathing == false)
 	{
 		if (X && Y && Destination == m_Home)
 		{
-			Deposit(); Idle = true; AtDestination = true;
+			Idle = true; AtDestination = true;
 		}
 		else if (X && Y)
 		{
-			Destination = m_Home; Collect(); AtDestination = true; Hull -= 1;
+			Destination = m_Home; Collect(); AtDestination = true; Hull -= 4;
 		};
 	}
-	else
+	else if (Pathing == true)
 	{
-	if (X && Y && Path.size() > 0)
+		while (true)
 		{
-			Path.erase(Path.begin());
-
-			if (Path.size() > 0)
+			if (Path.size() <= 0)
 			{
-				Destination = Path[0]->Index;
+
+				return;
 			}
-		};
-	}
+			
+			Destination = Path[0]->Index;
+
+			if (X == true && Y == true)
+			{
+				Path.erase(Path.begin());
+				Destination = Path[0]->Index;
+				X = false;
+				Y = false;
+			}
+			else
+			{
+				break;
+			}
+
+		}
+	};
 }
 
 void ship::Collect()
 {
-	int i = (*Target)[Destination]->rType;
-	m_rtype = (ResourceType)i;
+	//int i = (*Target)[Destination]->rType;
+	//m_rtype = (ResourceType)i;
 	m_cargo = m_cargo_capacity;
 	Destination = m_Home;
 }
@@ -310,13 +343,13 @@ void ship::SetDeposits(float a_deliverypointA, float a_deliverypointB)
 
 int ship::ReturnAngle()
 {
-	return m_angle;
+	return (int)m_angle;
 }
 
 void ship::DrawShip()
 {
 	HELP_DrawSprite(m_tex, m_FrameX, m_FrameY, m_framewidth, m_frameheight, ShipMat.m_floats[2][0], ShipMat.m_floats[2][1],
-		Dest.w, Dest.h, (int)m_delay, m_angle);
+		Dest.w, Dest.h, (int)m_delay, (int)m_angle);
 }
 
 void ship::UpdateShip(Matrix3 p_world)

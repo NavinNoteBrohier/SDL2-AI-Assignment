@@ -94,7 +94,7 @@ void SpriteCharacterGame::SpawnNodes(int a_rows, int a_cols, int a_x, int a_y, i
 			if (layout[i][j] == EMPTYROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEEMPTY); }
 			else if (layout[i][j] == ASTEROIDROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEASTEROID); }
 			else if (layout[i][j] == ENEMYROOM) { (*a_waypoint)[k]->ChangeSprite(TM_NODEENEMY); };
-			(*a_waypoint)[k]->SetSprite(50, 50, 0, 0, 50, 50, 0, 0.05f);
+			(*a_waypoint)[k]->SetSprite(50, 50, 0, 0, 50, 50, 0, 0);
 			(*a_waypoint)[k]->Index = k;
 			k++;
 		}
@@ -125,7 +125,7 @@ void SpriteCharacterGame::SpawnNodes(int a_rows, int a_cols, int a_x, int a_y, i
 			{
 				(*a_waypoint)[k]->Connections[3] = (*a_waypoint)[k + a_cols];
 			}
-
+			(*a_waypoint)[k]->pathing = true;
 			k++;
 		}
 	}

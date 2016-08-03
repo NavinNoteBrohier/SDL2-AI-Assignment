@@ -28,12 +28,16 @@ public:
 		MX = m_x;
 		MY = m_y;
 
-		for (int i = 0; i < 4; i++)
-		{
-			Connections[i] = nullptr;
-		}
+
+			for (int i = 0; i < 4; i++)
+			{
+				Connections[i] = nullptr;
+			}
+			pathing = false;
 	}
 
+	bool pathing = false;
+	
 	void SetXY(float a_x, float a_y)
 	{
 		m_x += a_x;
@@ -60,11 +64,11 @@ public:
 	void DrawNode()
 	{
 		
-		HELP_DrawSprite(m_sprite,m_FrameX,m_FrameY,m_frameWidth,m_frameHeight, NodeMat.m_floats[2][0], NodeMat.m_floats[2][1], Dest.w, Dest.h,m_delay,m_angle);
+		HELP_DrawSprite(m_sprite,(float)m_FrameX, (float)m_FrameY, (float)m_frameWidth, (float)m_frameHeight, NodeMat.m_floats[2][0], NodeMat.m_floats[2][1], (float)Dest.w, (float)Dest.h,(int)m_delay,m_angle);
 
 		for (int i = 0; i < 4; i++)
 		{
-			if (Connections[i] != nullptr)
+			if (Connections[i] != nullptr && pathing == true)
 			{
 				Window::setDrawColor(255, 255, 255, 255);
 				Window::drawLine(NodeMat.m_floats[2][0], NodeMat.m_floats[2][1], Connections[i]->m_x, Connections[i]->m_y);

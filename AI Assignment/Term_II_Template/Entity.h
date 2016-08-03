@@ -60,13 +60,14 @@ private:
 	int m_Home;
 
 	int m_cost;
+	int TotalShips;
 };
 
 class Pathing : public Entity
 {
 public:
 	
-	static vector<Node*> FindPath(Node* start, Node* end);
+	static vector<Node*> FindPath(Node* start, Node* end, ship * a_ship);
 	static bool CompareG(Node* a, Node* b);
 	static bool FindNode(vector<Node*> Vector, Node* node);
 

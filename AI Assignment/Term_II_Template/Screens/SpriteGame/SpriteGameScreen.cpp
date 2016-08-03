@@ -49,6 +49,8 @@ ship PathfindingShip(TM_SHIP,1,1,50,50,88,77,0,0,false);
  
 ship CameraShip(TM_SHIP, 1680 / 2, 1050 / 2, 0, 0, 0, 0, 0, 0, true);
 
+bool MousePressed = false;
+
 char tempStr[256];
 
 enum BUTTON_ID {
@@ -88,9 +90,19 @@ static void drawScreen(SDL_Event* e)
 	CameraShip.UpdateShip(WorldView);
 
 #pragma region // Solar System
-	for (int i = 0; i < NavShip.size(); i++)
+
+	for (int i = 0; i < (int)NavShip.size(); i++)
 	{
 		NavShip[i]->UpdateShip(WorldView);
+	}
+
+	if (PathfindingNodes.size() == 0)
+	{
+		cout << "zero Pathing" << endl;
+	}
+	else if (SystemOne.size() == 0)
+	{
+		cout << "zero System" << endl;
 	}
 
 	PlayerOne.updateEntity(&IdleShips);
@@ -141,30 +153,6 @@ static void drawScreen(SDL_Event* e)
 
 		sprintf_s(tempStr, "0 = %d", HELP_Keypresses(SDL_SCANCODE_0));
 		Window::printString(10 + 4, 300, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Fuel = %d", PlayerOne.rFuel);
-		Window::printString(10 + 4, 320, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Fuel use = %d", PlayerOne.FuelUse);
-		Window::printString(10 + 4, 340, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Metal = %d", PlayerOne.rMetal);
-		Window::printString(10 + 4, 360, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Metal Threshold = %d", PlayerOne.MetalThreshold);
-		Window::printString(10 + 4, 360, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Ships = %d", NavShip.size());
-		Window::printString(10 + 4, 380, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "Turn = %d", PlayerOne.turn);
-		Window::printString(10 + 4, 400, tempStr, cBlue, 15);
-
-		sprintf_s(tempStr, "IdleShips = %d", IdleShips.size());
-		Window::printString(10 + 4, 420, tempStr, cBlue, 15);
-
-
-
 	}
 #pragma endregion
 
@@ -175,7 +163,7 @@ static void drawScreen(SDL_Event* e)
 	{
 		if (HELP_Keypresses(SDL_SCANCODE_5)) { Pathfinding = false; }
 
-			for (int i = 0; i < PathfindingNodes.size(); i++)
+			for (int i = 0; i < (int)PathfindingNodes.size(); i++)
 			{
 				PathfindingNodes[i]->UpdateNode(WorldView);
 			}
@@ -184,37 +172,35 @@ static void drawScreen(SDL_Event* e)
 			int imX, imY;
 			SDL_GetMouseState(&imX, &imY);
 
+		
 
-		//if (HELP_Mousepresses(e) == 1)
-		//{
-		//	for (int i = 0; i < PathfindingNodes.size(); i++)
-		//	{
-		//		if (PathfindingNodes[i]->m_x -25 <= imX && PathfindingNodes[i]->m_x + 25 >= imX && 
-		//			PathfindingNodes[i]->m_y -25 <= imY && PathfindingNodes[i]->m_y + 25 >= imY)
-		//		{
-		//			PathfindingShip.StartDes = PathfindingNodes[i];
-		//			PathfindingShip.Path = Pathing::FindPath(PathfindingShip.StartDes, PathfindingShip.EndDes);
-		//		}
-		//	}
-		//	cout << PathfindingShip.StartDes << endl;
-		//}
-		if (HELP_Mousepresses(e) == 2)
+		if (HELP_Mousepresses(e) == 2 && MousePressed == false)
 			{
-				for (int i = 0; i < PathfindingNodes.size(); i++)
+				MousePressed = true;
+				for (int i = 0; i < (int)PathfindingNodes.size(); i++)
 				{
 					if (PathfindingNodes[i]->m_x - 25 <= imX && PathfindingNodes[i]->m_x + 25 >= imX && 
 						PathfindingNodes[i]->m_y - 25 <= imY && PathfindingNodes[i]->m_y + 25 >= imY)
 					{
 						PathfindingShip.StartDes = PathfindingNodes[PathfindingShip.Destination];
 						PathfindingShip.EndDes = PathfindingNodes[i];
-						PathfindingShip.Path = Pathing::FindPath(PathfindingShip.StartDes, PathfindingShip.EndDes);
-					}
+						PathfindingShip.Path = Pathing::FindPath(PathfindingShip.StartDes, PathfindingShip.EndDes,&PathfindingShip);
+							if (PathfindingShip.Path.size() > 0)
+							{
+								PathfindingShip.Destination = PathfindingShip.Path[0]->Index;
+							}
+						
+						}
 				}
 				cout << PathfindingShip.EndDes << endl;
+				
 			}
-
+			
 			PathfindingShip.UpdateShip(WorldView);
-		
+			if ((*e).button.type == SDL_MOUSEBUTTONUP)
+			{
+				MousePressed = false;
+			}
 	}
 
 #pragma endregion
@@ -232,25 +218,25 @@ void OpenSpriteGame()
 	}
 
 	Game.SpawnSystem(&SystemOne, 0, 0, 100, 1, 10, 10, 1,2);
-	for (int j = 0; j < 10; j++)
+	for (int j = 0; j < 5; j++)
 	{
 		NavShip.push_back(new ship(TM_PODSHIP, 500, 500, 25, 25, 25, 25, 0, 0, false));
 		NavShip[j]->SetTarget(&SystemOne);
 		NavShip[j]->m_tex = TM_PODSHIP;
 		NavShip[j]->SetTopSpeed(8);
 	}
-	//Entity NPC(&SystemOne,&NavShip);
 	
 	PathfindingShip.SetTopSpeed(4);
 	PathfindingShip.m_tex = TM_SHIP;
 	PathfindingShip.SetTarget(&PathfindingNodes);
 	PathfindingShip.Pathing = true;
+	PathfindingShip.Destination = 0;
 
 	PlayerOne.Construct(&SystemOne,&NavShip,&IdleShips);
 
-	PathfindingShip.SetTarget(&PathfindingNodes);
 
-	Game.SpawnNodes(3, 3, 130, 130, 105, &PathfindingNodes);
+
+	Game.SpawnNodes(5, 5, 130, 130, 105, &PathfindingNodes);
 
 
 	gSM.mBData = l_gameData;

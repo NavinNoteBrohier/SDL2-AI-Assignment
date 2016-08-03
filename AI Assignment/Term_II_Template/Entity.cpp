@@ -47,6 +47,7 @@ void Entity::Construct(vector<Node*>* a_nodes, vector<ship*>* a_ship, vector<int
 		(*m_ship)[j]->SetHome(m_Home);
 		(*m_ship)[j]->SetDeposits(rMetal, rFuel);
 		MetalThreshold += 10;
+		TotalShips++;
 	}
 }
 
@@ -68,9 +69,19 @@ void Entity::updateEntity(vector <int*>* IdleShips)
 
 		for (int i = 0; i < IdleShips->size(); i++)
 		{
-			int seven = *(*IdleShips)[2] ;
+		
 			while (	(*m_ship)[ *(*IdleShips)[i] ]->Hull != 100) 
 			{
+				if ((*m_ship)[*(*IdleShips)[i]]->m_rtype == Metal)
+				{
+					rMetal += 5;
+				}
+				if ((*m_ship)[*(*IdleShips)[i]]->m_rtype == Fuel)
+				{
+					rFuel += 5;
+				}
+				(*m_ship)[*(*IdleShips)[i]]->m_cargo = 0;
+				(*m_ship)[*(*IdleShips)[i]]->m_rtype = Home;
 				(*m_ship)[ *(*IdleShips)[i] ]->Hull++;
 				rMetal--;
 			}
@@ -89,6 +100,7 @@ void Entity::updateEntity(vector <int*>* IdleShips)
 		
 		cout << "Fuel  " << rFuel << endl;
 		cout << "Fuel Use " << FuelUse << endl;
+		cout << "Total Ships " << TotalShips << endl;
 		cout << "Metal " << rMetal << endl;
 		cout << "Metal Threshold " << MetalThreshold  << endl << endl;
 	}
@@ -109,11 +121,11 @@ void Entity::CalculatePriotity(vector <int*>* IdleShips)
 {
 	int p_Metal = 100;
 	int p_Fuel  = 101;
-	int BuildQ  = 90;
+	int BuildQ  = 99;
 
 	if (rMetal > MetalThreshold + BuildCost) { BuildQ += 1; };
 
-	if (rMetal > MetalThreshold) { p_Metal -= 1; BuildQ += 1; }
+	if (rMetal > MetalThreshold) { p_Metal -= 1; }
 	else { p_Metal += 1; }
 
 	if (rFuel > FuelThreshold) { p_Fuel -= 1; }
@@ -121,9 +133,9 @@ void Entity::CalculatePriotity(vector <int*>* IdleShips)
 
 	if (IdleShips->size() > 0 )
 	{
-		for (int i = 0; i <= IdleShips->size(); i++)
+		for (int i = 0; i < IdleShips->size(); i++)
 		{
-			for (int j = 0; j <= m_ship->size(); j++)
+			for (int j = 0; j < m_ship->size(); j++)
 			{
 				if ((*m_ship)[j]->m_rtype == Fuel) 
 				{ p_Fuel -= 1; };
@@ -131,12 +143,37 @@ void Entity::CalculatePriotity(vector <int*>* IdleShips)
 				{ p_Metal -= 1; BuildQ += 1; };
 			}
 			if (p_Fuel > p_Metal)
-			{ (*m_ship)[*(*IdleShips)[0]]->SetDestination(C_Fuel); }
+			{
+				(*m_ship)[*(*IdleShips)[0]]->SetDestination(C_Fuel);
+				(*m_ship)[*(*IdleShips)[0]]->m_rtype = Fuel;
+			}
 			else if (p_Metal > p_Fuel)
-			{ (*m_ship)[*(*IdleShips)[0]]->SetDestination(C_Metal); }
+			{
+				(*m_ship)[*(*IdleShips)[0]]->SetDestination(C_Metal);
+				(*m_ship)[*(*IdleShips)[0]]->m_rtype = Metal;
+			}
 			else { p_Metal += 1; p_Fuel += 2; }
 			CollectIdleShips(IdleShips, m_ship);
 		}
+		cout << "Metal Q " << p_Metal << endl;
+		cout << "Fuel Q " << p_Fuel << endl;
+		cout << "Build Q " << BuildQ << endl;
+
+		if (BuildQ >= p_Metal && rMetal >= BuildCost)
+		{
+			TotalShips++;
+			(*m_ship).push_back(new ship(TM_PODSHIP, m_x, m_y, 25, 25, 25, 25, 0, 0, false));
+			(*m_ship)[TotalShips-1]->Idle = true;
+			(*m_ship)[TotalShips-1]->SetTarget(m_nodes);
+			(*m_ship)[TotalShips-1]->Destination = m_Home;
+			(*m_ship)[TotalShips-1]->m_tex = TM_PODSHIP;
+			(*m_ship)[TotalShips-1]->SetTopSpeed(8);
+			(*m_ship)[TotalShips-1]->SetHome(m_Home);
+			(*m_ship)[TotalShips-1]->SetDeposits(rMetal, rFuel);
+			MetalThreshold += 10;
+			rMetal -= BuildCost;
+		}
+
 		cout << "Ships Sorted " << endl;
 	}
 
@@ -154,6 +191,7 @@ void Entity::CollectIdleShips(vector<int*>* IdleShips, vector <ship*>* Ships)
 	for (int i = 0; i < Ships->size(); i++)
 	{
 		if ((*Ships)[i]->Idle == true) { IdleShips->push_back(new int(i)); };
+		(*Ships)[i]->m_rtype = Home;
 	}
 }
 
@@ -194,7 +232,7 @@ void Entity::FindRec()
 
 }
 
-vector<Node*> Pathing::FindPath(Node * start, Node * end)
+vector<Node*> Pathing::FindPath(Node * start, Node * end, ship * a_ship)
 {
 	if (start == nullptr || end == nullptr)
 	{
@@ -257,6 +295,7 @@ vector<Node*> Pathing::FindPath(Node * start, Node * end)
 	std::reverse(Path.begin(), Path.end());
 
 	
+
 
 	return Path;
 }

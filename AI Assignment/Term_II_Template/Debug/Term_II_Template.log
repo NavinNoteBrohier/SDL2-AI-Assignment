@@ -1,79 +1,10 @@
-﻿  Entity.cpp
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(45): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(69): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(124): warning C4018: '<=': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(126): warning C4018: '<=': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(148): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(154): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(173): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\entity.cpp(273): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Compiling...
-  ship.cpp
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\ship.cpp(158): warning C4018: '>': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\ship.cpp(184): warning C4305: '*=': truncation from 'double' to 'float'
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\ship.cpp(313): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\ship.cpp(319): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SpriteGameScreen.cpp
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(91): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(178): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(203): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(145): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(148): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(151): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegamescreen.cpp(160): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
-  SpriteGameRoutines.cpp
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(29): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(31): warning C4390: ';': empty controlled statement found; is this the intent?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(149): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(158): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(170): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(172): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(173): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(186): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(189): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(190): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(202): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(205): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(206): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(215): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(218): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(219): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(219): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(230): warning C4018: '<': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(255): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(256): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(258): warning C4018: '>=': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(259): warning C4018: '>=': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(263): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(264): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(265): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(269): warning C4018: '>=': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(282): warning C4018: '>': signed/unsigned mismatch
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\screens\spritegame\spritegameroutines.cpp(301): warning C4018: '<': signed/unsigned mismatch
-  Node.cpp
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+﻿  SpriteGameScreen.cpp
+c:\users\navin.brohier\documents\github\sdl2-ai-assignment\ai assignment\term_ii_template\node.h(74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   MathLib.lib(utility.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
 Entity.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Generating code
   Finished generating code
+MathLib.lib(utility.obj) : warning LNK4099: PDB 'MathLib.pdb' was not found with 'MathLib.lib(utility.obj)' or at 'C:\Users\Navin.Brohier\Documents\GitHub\SDL2-AI-Assignment\AI Assignment\Debug\MathLib.pdb'; linking object as if no debug info
   Term_II_Template.vcxproj -> C:\Users\Navin.Brohier\Documents\GitHub\SDL2-AI-Assignment\AI Assignment\Debug\Term_II_Template.exe
   Term_II_Template.vcxproj -> C:\Users\Navin.Brohier\Documents\GitHub\SDL2-AI-Assignment\AI Assignment\Debug\Term_II_Template.pdb (Partial PDB)

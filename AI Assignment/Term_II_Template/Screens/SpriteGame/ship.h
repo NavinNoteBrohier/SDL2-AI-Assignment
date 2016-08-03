@@ -66,6 +66,9 @@ public:
 	int Destination;
 	bool AtDestination;
 
+	bool X; 
+	bool Y;
+
 
 	vector <Node*> Path;
 	Node* StartDes;
@@ -75,10 +78,12 @@ public:
 	int m_Home;
 	float Hull;
 	bool Idle; 
+	bool FirstNode;
 	Matrix3 ShipMat;
 	SDL_Texture* m_tex;
 	bool Pathing;
-	ResourceType	m_rtype;
+	ResourceType	m_rtype;	
+	int			m_cargo;
 protected:
 	string		 m_name;
 	Matrix3		 Translation;
@@ -90,7 +95,7 @@ protected:
 	vector<Node*>*	Target;
 
 	int			m_cargo_capacity;
-	int			m_cargo;
+
 	bool		 m_save;
 	bool		 m_KeyControl;
 	float		 m_angle;
